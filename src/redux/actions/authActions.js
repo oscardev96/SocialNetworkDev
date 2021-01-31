@@ -1,5 +1,10 @@
-import {SIGN_IN_REQUEST, SIGN_UP_REQUEST} from '../type';
-
+import {SIGN_IN_REQUEST, SIGN_UP_REQUEST, SET_LOGIN, LOG_OUT} from '../type';
+export const setLogin = () => ({
+  type: SET_LOGIN,
+});
+export const logOut = () => ({
+  type: LOG_OUT,
+});
 export const signUpAction = (name, email, password) => ({
   type: SIGN_UP_REQUEST,
   name,

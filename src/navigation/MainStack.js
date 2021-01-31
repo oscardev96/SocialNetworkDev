@@ -3,6 +3,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/home/HomeScreen';
 import ProfileScreen from '../screens/home/ProfileScreen';
+import DevScreen from '../screens/home/DevScreen';
+import PostScreen from '../screens/home/PostScreen';
+
+import ProfileDetailScreen from '../screens/home/ProfileDetailScreen';
 // import EditProfileScreen from '../screens/home/EditProfileScreen';
 import Edit from '../screens/home/EditScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,6 +14,7 @@ import EditScreen from '../screens/home/EditScreen';
 
 const Tab = createBottomTabNavigator();
 const StackProfile = createStackNavigator();
+const DevStack = createStackNavigator();
 const MainStack = () => {
   const tabBarOption = {
     showLabel: false,
@@ -25,8 +30,11 @@ const MainStack = () => {
         case 'Home':
           iconName = 'home';
           break;
-        case 'Profile':
+        case 'Dev':
           iconName = 'id-card';
+          break;
+        case 'Post':
+          iconName = 'plus-circle';
           break;
         default:
           iconName = 'home';
@@ -44,47 +52,22 @@ const MainStack = () => {
   return (
     <Tab.Navigator tabBarOptions={tabBarOption} screenOptions={screenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={ProfileStackScreen} />
+      <Tab.Screen name="Post" component={PostScreen} />
+      <Tab.Screen name="Dev" component={DevStackScreen} />
     </Tab.Navigator>
   );
 };
 
 export default MainStack;
-const ProfileStackScreen = ({navigation}) => {
+
+const DevStackScreen = ({navigation}) => {
   return (
-    <StackProfile.Navigator>
-      <StackProfile.Screen
-        options={{
-          title: '',
-          headerRight: () => (
-            <Icon.Button
-              name="user"
-              size={25}
-              backgroundColor="white"
-              color="#333"
-              onPress={() => navigation.navigate('EditProfile')}
-            />
-          ),
-        }}
-        name="ProfileScreen"
-        component={ProfileScreen}
+    <DevStack.Navigator headerMode={false}>
+      <DevStack.Screen name="DevScreen" component={DevScreen} />
+      <DevStack.Screen
+        name="ProfileDetailScreen"
+        component={ProfileDetailScreen}
       />
-      <StackProfile.Screen
-        options={{
-          title: '',
-          headerLeft: () => (
-            <Icon.Button
-              name="long-arrow-left"
-              size={25}
-              backgroundColor="white"
-              color="#333"
-              onPress={() => navigation.navigate('ProfileScreen')}
-            />
-          ),
-        }}
-        name="EditProfile"
-        component={EditScreen}
-      />
-    </StackProfile.Navigator>
+    </DevStack.Navigator>
   );
 };

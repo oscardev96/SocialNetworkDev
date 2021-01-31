@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
+import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import Modal from 'react-native-modal';
 
 import InputText from './Input';
@@ -14,7 +7,7 @@ import * as UserAction from '../redux/actions/userActions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-const ModalEditUser = ({isShow, hiddenModal, updateUser}) => {
+const ModalEditEducation = ({isShow, hiddenModal, updateUser}) => {
   const [status, setstatus] = useState('');
   const [skills, setskills] = useState('');
   const [exp, setexp] = useState('');
@@ -48,21 +41,10 @@ const ModalEditUser = ({isShow, hiddenModal, updateUser}) => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <SafeAreaView>
-        <Modal
-          isVisible={isShow}
-          coverScreen={true}
-          backdropOpacity={0.95}
-          backdropColor="#6F41ED">
+        <Modal isVisible={isShow}>
           <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 50,
-            }}>
-            <Text style={{fontSize: 30, fontWeight: '700', color: '#fff'}}>
-              Edit Profile
-            </Text>
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Hello!</Text>
             <ScrollView>
               <InputText
                 value={status}
@@ -121,16 +103,13 @@ const ModalEditUser = ({isShow, hiddenModal, updateUser}) => {
                 }}
               />
             </ScrollView>
-            <View style={{flexDirection: 'row'}}>
-              <Button
-                title="Submit"
-                onPress={() => {
-                  submitForm();
-                }}
-                color="white"
-              />
-              <Button title="Close" onPress={hiddenModal} color="white" />
-            </View>
+            <Button
+              title="Submit"
+              onPress={() => {
+                submitForm();
+              }}
+            />
+            <Button title="Close" onPress={hiddenModal} />
           </View>
         </Modal>
       </SafeAreaView>
@@ -141,4 +120,4 @@ const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
   updateUser: bindActionCreators(UserAction, dispatch),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditEducation);

@@ -4,6 +4,8 @@ import {
   GET_USER_SUCCESS,
   CREATE_PROFILE_REQUEST,
   CREATE_PROFILE_SUCCES,
+  GET_ALL_PROFILE_SUCCES,
+  GET_ALL_PROFILE_REQUEST,
 } from '../type';
 import API from '../../../config';
 
@@ -20,6 +22,19 @@ export function* watchGetUser() {
   yield takeEvery(GET_USER_REQUEST, onGetUser);
 }
 
+//// get all profile
+function* onGetAllProfile(action) {
+  try {
+    let result = yield API.get('/api/profile');
+    yield put({type: GET_ALL_PROFILE_SUCCES, data: result.data});
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* watchGetAllProfile() {
+  yield takeEvery(GET_ALL_PROFILE_REQUEST, onGetAllProfile);
+}
+/// end get all profile
 function* onPostUser(action) {
   try {
     let result = yield API.post('/api/profile', {

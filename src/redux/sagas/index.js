@@ -1,6 +1,7 @@
 import {put, takeEvery, all, call} from 'redux-saga/effects';
 import {watchSignIn, watchSignUp} from './authSaga';
-import {watchGetUser, watchPostUser} from './userSaga';
+import {watchGetUser, watchPostUser, watchGetAllProfile} from './userSaga';
+import {watchGetAllPost, watchPost} from './postSaga';
 function* helloSaga() {
   console.log('Hello Sagas!');
 }
@@ -14,5 +15,8 @@ export default function* rootSaga() {
     call(watchSignIn),
     call(watchGetUser),
     call(watchPostUser),
+    call(watchGetAllProfile),
+    call(watchGetAllPost),
+    call(watchPost),
   ]);
 }

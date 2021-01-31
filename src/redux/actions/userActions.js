@@ -1,4 +1,8 @@
-import {GET_USER_REQUEST, CREATE_PROFILE_REQUEST} from '../type';
+import {
+  GET_USER_REQUEST,
+  CREATE_PROFILE_REQUEST,
+  GET_ALL_PROFILE_REQUEST,
+} from '../type';
 export const getUser = () => ({
   type: GET_USER_REQUEST,
 });
@@ -21,4 +25,7 @@ export const postUser = (
   github,
   location,
   website,
+});
+export const getAllProfile = () => ({
+  type: GET_ALL_PROFILE_REQUEST,
 });
